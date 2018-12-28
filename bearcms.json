@@ -1,0 +1,17 @@
+{
+    "id": "bearcms/embed-element-addon",
+    "name": "Embed element",
+    "description": "This addon enables embedding third party functionality into your website. Some of the supported services include Google Drive, One Drive and SlideShare.",
+    "author": {
+        "name": "Bear CMS",
+        "email": "support@bearcms.com",
+        "url": "https://bearcms.com/"
+    },
+    "media": [
+        {
+            "filename": "/assets/1.png",
+            "width": 1600,
+            "height": 1067
+        }
+    ]
+}

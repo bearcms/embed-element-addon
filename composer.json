@@ -1,0 +1,22 @@
+{
+    "name": "bearcms/embed-element-addon",
+    "description": "Embed element for Bear CMS",
+    "keywords": ["embed", "element", "Bear CMS"],
+    "homepage": "https://github.com/bearcms/embed-element-addon",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bear CMS",
+            "email": "support@bearcms.com",
+            "homepage": "https://bearcms.com/"
+        }
+    ],
+    "require": {
+        "php": ">=7.1",
+        "bearcms/bearframework-addon": "^0.6.2",
+        "ivopetkov/html5-dom-document-php": "0.6.*|1.*"
+    },
+    "autoload": {
+        "files": ["autoload.php"]
+    }
+}
