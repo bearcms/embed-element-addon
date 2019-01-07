@@ -123,6 +123,8 @@ if (strlen($url) > 0) {
         $content = '<div style="background-color:red;color:#fff;padding:10px 15px 9px 15px;border-radius:4px;line-height:25px;font-size:14px;font-family:Arial,sans-serif;">';
         $content .= 'Invalid embed code or URL!<div style="font-size:11px;">This message is visible to administrators only.</div>';
         $content .= '</div>';
+    } else {
+        $content = '';
     }
 }
 ?><html>
