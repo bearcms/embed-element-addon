@@ -18,6 +18,14 @@ $app->bearCMS->addons
 
                 $context->assets->addDir('assets');
 
+                $app->localization
+                ->addDictionary('en', function() use ($context) {
+                    return include $context->dir . '/locales/en.php';
+                })
+                ->addDictionary('bg', function() use ($context) {
+                    return include $context->dir . '/locales/bg.php';
+                });
+
                 \BearCMS\Internal\ElementsTypes::add('embed', [
                     'componentSrc' => 'bearcms-embed-element',
                     'componentFilename' => $context->dir . '/components/embedElement.php',
@@ -36,5 +44,16 @@ $app->bearCMS->addons
                         ]
                     ]
                 ]);
+
+                \BearCMS\Internal\Themes::$elementsOptions['embed'] = function($context, $idPrefix, $parentSelector) {
+                    $group = $context->addGroup(__('bearcms.themes.options.Embed'));
+                    $group->addOption($idPrefix . "EmbedCSS", "css", '', [
+                        "cssTypes" => ["cssBorder", "cssRadius", "cssShadow"],
+                        "cssOutput" => [
+                            ["rule", $parentSelector . " .bearcms-embed-element", "overflow:hidden;"],
+                            ["selector", $parentSelector . " .bearcms-embed-element"]
+                        ]
+                    ]);
+                };
             };
         });

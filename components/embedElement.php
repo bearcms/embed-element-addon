@@ -1,4 +1,10 @@
 <?php
+/*
+ * Embed element addon for Bear CMS
+ * https://github.com/bearcms/embed-element-addon
+ * Copyright (c) Amplilabs Ltd.
+ * Free to use under the MIT license.
+ */
 
 use BearFramework\App;
 
@@ -117,7 +123,7 @@ if (strlen($url) > 0) {
         }
         $containerStyle = 'height:' . $height . ';';
     }
-    $content = '<div class="responsively-lazy" style="' . $containerStyle . 'font-size:0;line-height:0;" data-lazycontent="' . htmlentities($html) . '"></div>';
+    $content = '<div class="bearcms-embed-element responsively-lazy" style="' . $containerStyle . 'font-size:0;line-height:0;" data-lazycontent="' . htmlentities($html) . '"></div>';
 } else {
     if ($app->bearCMS->currentUser->exists()) {
         $content = '<div style="background-color:red;color:#fff;padding:10px 15px 9px 15px;border-radius:4px;line-height:25px;font-size:14px;font-family:Arial,sans-serif;">';
