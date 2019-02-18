@@ -12,9 +12,9 @@ use BearFramework\App;
 $app = App::get();
 
 $app->bearCMS->addons
-        ->announce('bearcms/embed-element-addon', function(\BearCMS\Addons\Addon $addon) use ($app) {
+        ->register('bearcms/embed-element-addon', function(\BearCMS\Addons\Addon $addon) use ($app) {
             $addon->initialize = function() use ($app) {
-                $context = $app->context->get(__FILE__);
+                $context = $app->contexts->get(__FILE__);
 
                 $context->assets->addDir('assets');
 
