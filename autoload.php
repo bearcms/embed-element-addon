@@ -10,6 +10,7 @@
 BearFramework\Addons::register('bearcms/embed-element-addon', __DIR__, [
     'require' => [
         'bearcms/bearframework-addon',
-        'bearframework/localization-addon'
+        'bearframework/localization-addon',
+        'ivopetkov/client-shortcuts-bearframework-addon'
     ]
 ]);
