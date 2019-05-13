@@ -135,7 +135,7 @@ if (strlen($url) > 0) {
 }
 ?><html>
     <head>
-        <link rel="client-shortcuts-embed" name="-bearcms-embed-element-responsively-lazy">
+        <link rel="client-packages-embed" name="-bearcms-embed-element-responsively-lazy">
     </head>
     <body><?= $content ?></body>
 </html>
