@@ -80,7 +80,7 @@ if (strlen($url) > 0) {
                     $result = curl_exec($ch);
                     $error = curl_error($ch);
                     curl_close($ch);
-                    if (!isset($error{0})) {
+                    if (!isset($error[0])) {
                         $result = json_decode($result, true);
                         if (is_array($result) && isset($result['html'])) {
                             $dom = new IvoPetkov\HTML5DOMDocument();
