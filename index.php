@@ -14,7 +14,7 @@ $app = App::get();
 $app->bearCMS->addons
         ->register('bearcms/embed-element-addon', function(\BearCMS\Addons\Addon $addon) use ($app) {
             $addon->initialize = function() use ($app) {
-                $context = $app->contexts->get(__FILE__);
+                $context = $app->contexts->get(__DIR__);
 
                 $context->assets->addDir('assets');
 

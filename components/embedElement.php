@@ -9,7 +9,7 @@
 use BearFramework\App;
 
 $app = App::get();
-$context = $app->contexts->get(__FILE__);
+$context = $app->contexts->get(__DIR__);
 
 $allowedHosts = [
     'skydrive.live.com',
@@ -114,7 +114,17 @@ if (strlen($url) > 0) {
         $aspectRatioParts = explode(':', $aspectRatio);
         $paddingBottom = '75%';
         if (sizeof($aspectRatioParts) === 2 && is_numeric($aspectRatioParts[0]) && is_numeric($aspectRatioParts[1])) {
-            $paddingBottom = ((float) $aspectRatioParts[1] / (float) $aspectRatioParts[0] * 100) . '%';
+            $widthRatio = (float) $aspectRatioParts[0];
+            $heightRatio = (float) $aspectRatioParts[1];
+            if ($widthRatio > 0 && $heightRatio > 0) {
+                if ($heightRatio / $widthRatio > 10) { // prevent super tall element
+                    $heightRatio = $widthRatio * 10;
+                }
+                $paddingBottomValue = ($heightRatio / $widthRatio * 100);
+                if ($paddingBottomValue >= 0) {
+                    $paddingBottom = $paddingBottomValue . '%';
+                }
+            }
         }
         $containerStyle = 'padding-bottom:' . $paddingBottom . ';';
     } else {
@@ -134,8 +144,11 @@ if (strlen($url) > 0) {
     }
 }
 ?><html>
-    <head>
-        <link rel="client-packages-embed" name="-bearcms-embed-element-responsively-lazy">
-    </head>
-    <body><?= $content ?></body>
+
+<head>
+    <link rel="client-packages-embed" name="-bearcms-embed-element-responsively-lazy">
+</head>
+
+<body><?= $content ?></body>
+
 </html>
