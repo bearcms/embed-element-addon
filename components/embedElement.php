@@ -7,6 +7,7 @@
  */
 
 use BearFramework\App;
+use IvoPetkov\HTML5DOMDocument;
 
 $app = App::get();
 $context = $app->contexts->get(__DIR__);
@@ -27,8 +28,8 @@ $height = $component->height;
 
 $value = trim($value);
 if (strpos($value, '<iframe') !== false) {
-    $dom = new IvoPetkov\HTML5DOMDocument();
-    $dom->loadHTML($value);
+    $dom = new HTML5DOMDocument();
+    $dom->loadHTML($value, HTML5DOMDocument::ALLOW_DUPLICATE_IDS);
     $iframes = $dom->getElementsByTagName('iframe');
     if ($iframes->length > 0) {
         $url = trim((string) $iframes[0]->getAttribute('src'));
@@ -83,8 +84,8 @@ if (strlen($url) > 0) {
                     if (!isset($error[0])) {
                         $result = json_decode($result, true);
                         if (is_array($result) && isset($result['html'])) {
-                            $dom = new IvoPetkov\HTML5DOMDocument();
-                            $dom->loadHTML($result['html']);
+                            $dom = new HTML5DOMDocument();
+                            $dom->loadHTML($result['html'], HTML5DOMDocument::ALLOW_DUPLICATE_IDS);
                             $iframe = $dom->querySelector('iframe');
                             if ($iframe !== null) {
                                 $src = $iframe->getAttribute('src');
