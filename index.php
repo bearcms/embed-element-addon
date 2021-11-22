@@ -55,11 +55,5 @@ $app->bearCMS->addons
                     ]
                 ]);
             };
-
-            $app->clientPackages
-                ->add('-bearcms-embed-element-responsively-lazy', function (IvoPetkov\BearFrameworkAddons\ClientPackage $package) use ($context) {
-                    $package->addJSFile($context->assets->getURL('assets/responsivelyLazy.min.js', ['cacheMaxAge' => 999999999, 'version' => 2]), ['async' => true]);
-                    $package->addCSSCode('.responsively-lazy:not(img){position:relative;height:0;}.responsively-lazy:not(img)>img{position:absolute;top:0;left:0;width:100%;height:100%}img.responsively-lazy{width:100%;}');
-                });
         };
     });
