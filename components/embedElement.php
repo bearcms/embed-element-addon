@@ -127,14 +127,14 @@ if (strlen($url) > 0) {
                 }
             }
         }
-        $containerStyle = 'padding-bottom:' . $paddingBottom . ';';
+        $containerStyle = 'position:relative;height:0;padding-bottom:' . $paddingBottom . ';';
     } else {
         if (strlen($height) === 0) {
             $height = '420px';
         }
-        $containerStyle = 'height:' . $height . ';';
+        $containerStyle = 'position:relative;height:' . $height . ';';
     }
-    $content = '<div class="bearcms-embed-element responsively-lazy" style="' . $containerStyle . 'font-size:0;line-height:0;" data-lazycontent="' . htmlentities($html) . '"></div>';
+    $content = '<div class="bearcms-embed-element" style="' . $containerStyle . 'font-size:0;line-height:0;" data-responsively-lazy-type="html" data-responsively-lazy="' . htmlentities($html) . '"></div>';
 } else {
     if ($app->bearCMS->currentUser->exists()) {
         $content = '<div style="background-color:red;color:#fff;padding:10px 15px 9px 15px;border-radius:4px;line-height:25px;font-size:14px;font-family:Arial,sans-serif;">';
@@ -147,7 +147,7 @@ if (strlen($url) > 0) {
 ?><html>
 
 <head>
-    <link rel="client-packages-embed" name="-bearcms-embed-element-responsively-lazy">
+    <link rel="client-packages-embed" name="responsivelyLazy">
 </head>
 
 <body><?= $content ?></body>

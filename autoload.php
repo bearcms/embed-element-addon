@@ -11,6 +11,7 @@ BearFramework\Addons::register('bearcms/embed-element-addon', __DIR__, [
     'require' => [
         'bearcms/bearframework-addon',
         'bearframework/localization-addon',
-        'ivopetkov/client-packages-bearframework-addon'
+        'ivopetkov/client-packages-bearframework-addon',
+        'ivopetkov/responsively-lazy-bearframework-addon'
     ]
 ]);
