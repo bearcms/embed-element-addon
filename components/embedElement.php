@@ -10,7 +10,6 @@ use BearFramework\App;
 use IvoPetkov\HTML5DOMDocument;
 
 $app = App::get();
-$context = $app->contexts->get(__DIR__);
 
 $allowedHosts = [
     'skydrive.live.com',
@@ -22,9 +21,9 @@ $allowedHosts = [
     'sway.com',
 ];
 
-$value = $component->value;
-$aspectRatio = $component->aspectRatio;
-$height = $component->height;
+$value = (string)$component->value;
+$aspectRatio = (string)$component->aspectRatio;
+$height = (string)$component->height;
 
 $value = trim($value);
 if (strpos($value, '<iframe') !== false) {
@@ -88,7 +87,7 @@ if (strlen($url) > 0) {
                             $dom->loadHTML($result['html'], HTML5DOMDocument::ALLOW_DUPLICATE_IDS);
                             $iframe = $dom->querySelector('iframe');
                             if ($iframe !== null) {
-                                $src = $iframe->getAttribute('src');
+                                $src = (string)$iframe->getAttribute('src');
                                 if (strlen($src) > 0) {
                                     $url = $src;
                                     $ttl = 0;
