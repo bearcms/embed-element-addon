@@ -11,6 +11,10 @@ use IvoPetkov\HTML5DOMDocument;
 
 $app = App::get();
 
+$outputType = (string) $component->getAttribute('output-type');
+$outputType = isset($outputType[0]) ? $outputType : 'full-html';
+$isFullHtmlOutputType = $outputType === 'full-html';
+
 $allowedHosts = [
     'skydrive.live.com',
     'onedrive.live.com',
@@ -108,7 +112,7 @@ if (strlen($url) > 0) {
     }
 }
 if (strlen($url) > 0) {
-    $html = '<iframe src="' . htmlentities($url) . '" frameborder="0" style="position:absolute;width:100%;height:100%;" allowfullscreen="true"></iframe>';
+    $html = '<iframe src="' . htmlentities($url) . '" frameborder="0"' . ($isFullHtmlOutputType ? ' style="position:absolute;width:100%;height:100%;"' : ' style="width:100%;"') . ' allowfullscreen="true"></iframe>';
 
     if (strlen($aspectRatio) > 0) {
         $aspectRatioParts = explode(':', $aspectRatio);
@@ -133,7 +137,11 @@ if (strlen($url) > 0) {
         }
         $containerStyle = 'position:relative;height:' . $height . ';';
     }
-    $content = '<div class="bearcms-embed-element" style="' . $containerStyle . 'font-size:0;line-height:0;" data-responsively-lazy-type="html" data-responsively-lazy="' . htmlentities($html) . '"></div>';
+    if ($isFullHtmlOutputType) {
+        $content = '<div class="bearcms-embed-element" style="' . $containerStyle . 'font-size:0;line-height:0;" data-responsively-lazy-type="html" data-responsively-lazy="' . htmlentities($html) . '"></div>';
+    } else {
+        $content = $html;
+    }
 } else {
     if ($app->bearCMS->currentUser->exists()) {
         $content = '<div style="background-color:red;color:#fff;padding:10px 15px 9px 15px;border-radius:4px;line-height:25px;font-size:14px;font-family:Arial,sans-serif;">';
@@ -143,12 +151,14 @@ if (strlen($url) > 0) {
         $content = '';
     }
 }
-?><html>
+echo '<html>';
 
-<head>
-    <link rel="client-packages-embed" name="responsivelyLazy">
-</head>
+if ($isFullHtmlOutputType) {
+    echo '<head><link rel="client-packages-embed" name="responsivelyLazy"></head>';
+}
 
-<body><?= $content ?></body>
+echo '<body>';
+echo $content;
+echo '</body>';
 
-</html>
+echo '</html>';
