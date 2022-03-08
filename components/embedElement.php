@@ -36,11 +36,13 @@ if (strpos($value, '<iframe') !== false) {
     $iframes = $dom->getElementsByTagName('iframe');
     if ($iframes->length > 0) {
         $url = trim((string) $iframes[0]->getAttribute('src'));
+    } else {
+        $url = '';
     }
 } else {
     $url = $value;
 }
-if (strpos($url, '//') === 0) {
+if ($url !== '' && strpos($url, '//') === 0) {
     $url = 'https:' . $url;
 }
 if (filter_var($url, FILTER_VALIDATE_URL) === false) {
