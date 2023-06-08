@@ -26,29 +26,28 @@ $app->bearCMS->addons
                     return include $context->dir . '/locales/bg.php';
                 });
 
-            \BearCMS\Internal\ElementsTypes::add('embed', [
-                'componentSrc' => 'bearcms-embed-element',
-                'componentFilename' => $context->dir . '/components/embedElement.php',
-                'fields' => [
-                    [
-                        'id' => 'value',
-                        'type' => 'textbox'
-                    ],
-                    [
-                        'id' => 'aspectRatio',
-                        'type' => 'textbox'
-                    ],
-                    [
-                        'id' => 'height',
-                        'type' => 'textbox'
-                    ]
+            $type = new \BearCMS\Internal\ElementType('embed', 'bearcms-embed-element', $context->dir . '/components/embedElement.php');
+            $type->properties = [
+                [
+                    'id' => 'value',
+                    'type' => 'string'
+                ],
+                [
+                    'id' => 'aspectRatio',
+                    'type' => 'string'
+                ],
+                [
+                    'id' => 'height',
+                    'type' => 'string'
                 ]
-            ]);
+            ];
+            \BearCMS\Internal\ElementsTypes::add($type);
 
-            \BearCMS\Internal\Themes::$elementsOptions['embed'] = function ($context, $idPrefix, $parentSelector) {
-                $group = $context->addGroup(__('bearcms.themes.options.Embed'));
+            \BearCMS\Internal\Themes::$elementsOptions['embed'] = function ($options, $idPrefix, $parentSelector, $context, $details) {
+                $group = $options->addGroup(__('bearcms.themes.options.Embed'));
                 $group->addOption($idPrefix . "EmbedCSS", "css", '', [
                     "cssTypes" => ["cssBorder", "cssRadius", "cssShadow"],
+                    "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
                     "cssOutput" => [
                         ["rule", $parentSelector . " .bearcms-embed-element", "overflow:hidden;"],
                         ["selector", $parentSelector . " .bearcms-embed-element"]
