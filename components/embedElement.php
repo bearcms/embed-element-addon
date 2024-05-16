@@ -18,6 +18,7 @@ $isFullHtmlOutputType = $outputType === 'full-html';
 $allowedHosts = [
     'skydrive.live.com',
     'onedrive.live.com',
+    '1drv.ms',
     'docs.google.com',
     'drive.google.com',
     'slideshare.net',
