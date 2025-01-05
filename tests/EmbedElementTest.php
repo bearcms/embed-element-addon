@@ -23,6 +23,6 @@ class EmbedElementTest extends BearCMS\AddonTests\PHPUnitTestCase
         $result = $app->components->process($html);
 
         $this->assertTrue(strpos($result, '<div class="bearcms-embed-element"') !== false);
-        $this->assertTrue(strpos($result, 'https://www.slideshare.net/slideshow/embed_code/') !== false);
+        $this->assertTrue(strpos($result, 'https://www.slideshare.net/GrahamMcInnes1') !== false);
     }
 }

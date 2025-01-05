@@ -120,7 +120,7 @@ if (strlen($url) > 0) {
     if (strlen($aspectRatio) > 0) {
         $aspectRatioParts = explode(':', $aspectRatio);
         $paddingBottom = '75%';
-        if (sizeof($aspectRatioParts) === 2 && is_numeric($aspectRatioParts[0]) && is_numeric($aspectRatioParts[1])) {
+        if (count($aspectRatioParts) === 2 && is_numeric($aspectRatioParts[0]) && is_numeric($aspectRatioParts[1])) {
             $widthRatio = (float) $aspectRatioParts[0];
             $heightRatio = (float) $aspectRatioParts[1];
             if ($widthRatio > 0 && $heightRatio > 0) {

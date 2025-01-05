@@ -12,8 +12,8 @@ use BearFramework\App;
 $app = App::get();
 
 $app->bearCMS->addons
-    ->register('bearcms/embed-element-addon', function (\BearCMS\Addons\Addon $addon) use ($app) {
-        $addon->initialize = function () use ($app) {
+    ->register('bearcms/embed-element-addon', function (\BearCMS\Addons\Addon $addon) use ($app): void {
+        $addon->initialize = function () use ($app): void {
             $context = $app->contexts->get(__DIR__);
 
             $context->assets->addDir('assets');
@@ -43,7 +43,7 @@ $app->bearCMS->addons
             ];
             \BearCMS\Internal\ElementsTypes::add($type);
 
-            \BearCMS\Internal\Themes::$elementsOptions['embed'] = function ($options, $idPrefix, $parentSelector, $context, $details) {
+            \BearCMS\Internal\Themes::$elementsOptions['embed'] = function ($options, $idPrefix, $parentSelector, $context, $details): void {
                 $group = $options->addGroup(__('bearcms.themes.options.Embed'));
                 $group->addOption($idPrefix . "EmbedCSS", "css", '', [
                     "cssTypes" => ["cssBorder", "cssRadius", "cssShadow"],
