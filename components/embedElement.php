@@ -86,7 +86,7 @@ if (strlen($url) > 0) {
                     curl_setopt($ch, CURLOPT_TIMEOUT, 10);
                     $result = curl_exec($ch);
                     $error = curl_error($ch);
-                    curl_close($ch);
+                    // curl_close($ch); not needed since PHP 8.0
                     if (!isset($error[0])) {
                         $result = json_decode($result, true);
                         if (is_array($result) && isset($result['html'])) {
